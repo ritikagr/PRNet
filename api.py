@@ -3,7 +3,7 @@ import os
 from skimage.io import imread, imsave
 from skimage.transform import estimate_transform, warp
 from time import time
-
+from matplotlib import pyplot as plt
 from predictor import PosPrediction
 
 class PRN:
@@ -112,9 +112,14 @@ class PRN:
         DST_PTS = np.array([[0,0], [0,self.resolution_inp - 1], [self.resolution_inp - 1, 0]])
         tform = estimate_transform('similarity', src_pts, DST_PTS)
         
+        print("src: ", src_pts)
+        print("dst: ", DST_PTS)
+        print("tform: ", tform)
         image = image/255.
         cropped_image = warp(image, tform.inverse, output_shape=(self.resolution_inp, self.resolution_inp))
-
+        plt.imshow(cropped_image)
+        plt.show()
+        
         # run our net
         #st = time()
         cropped_pos = self.net_forward(cropped_image)
