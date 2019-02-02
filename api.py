@@ -102,6 +102,7 @@ class PRN:
                 return None
 
             d = detected_faces[0].rect ## only use the first detected face (assume that each input image only contains one face)
+            print(d)
             left = d.left(); right = d.right(); top = d.top(); bottom = d.bottom()
             old_size = (right - left + bottom - top)/2
             center = np.array([right - (right - left) / 2.0, bottom - (bottom - top) / 2.0 + old_size*0.14])
