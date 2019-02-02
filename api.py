@@ -3,7 +3,7 @@ import os
 from skimage.io import imread, imsave
 from skimage.transform import estimate_transform, warp
 from time import time
-from matplotlib import pyplot as plt
+from IPython.display import Image,display
 from predictor import PosPrediction
 
 class PRN:
@@ -118,8 +118,8 @@ class PRN:
         print("tform: ", tform)
         image = image/255.
         cropped_image = warp(image, tform.inverse, output_shape=(self.resolution_inp, self.resolution_inp))
-        plt.imshow(cropped_image)
-        plt.show()
+        cv2.imwrite('crop_img.jpg', cropped_image)
+        display(Image('crop_img.jpg')
         
         # run our net
         #st = time()
