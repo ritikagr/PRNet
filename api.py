@@ -113,13 +113,9 @@ class PRN:
         DST_PTS = np.array([[0,0], [0,self.resolution_inp - 1], [self.resolution_inp - 1, 0]])
         tform = estimate_transform('similarity', src_pts, DST_PTS)
         
-        print("src: ", src_pts)
-        print("dst: ", DST_PTS)
-        print("tform: ", tform)
         image = image/255.
         cropped_image = warp(image, tform.inverse, output_shape=(self.resolution_inp, self.resolution_inp))
         cv2.imwrite('crop_img.jpg', cropped_image)
-        display(Image('crop_img.jpg')
         
         # run our net
         #st = time()
