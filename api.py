@@ -115,7 +115,6 @@ class PRN:
         
         image = image/255.
         cropped_image = warp(image, tform.inverse, output_shape=(self.resolution_inp, self.resolution_inp))
-        cv2.imwrite('crop_img.jpg', cropped_image)
         
         # run our net
         #st = time()
